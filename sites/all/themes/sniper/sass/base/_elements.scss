@@ -1,0 +1,22 @@
+a {
+  color: $darker-gray;
+  text-decoration: none;
+
+  &:hover {
+    color: $dark-gray;
+  }
+}
+
+h1 {
+    font-family: 'Josefin Sans' sans-serif;
+    font-size: 3em;
+    font-weight: 700;
+
+}
+
+h2 {
+    font-family: 'Josefin Sans' sans-serif;
+    font-size: 3em;
+    font-weight: 700;
+
+}
