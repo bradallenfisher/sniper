@@ -13,3 +13,20 @@
   font-size: .8em;
   margin: 30px;
 }
+
+a.background {
+  border: 1px solid $link-border-color;
+  color: $link;
+  display: block;
+  background: $white;
+  padding: 10px 20px;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $white;
+    background: $link;
+  }
+}
+p {
+  padding: 0 20px;
+}

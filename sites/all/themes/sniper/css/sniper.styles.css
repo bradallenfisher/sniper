@@ -1,25 +1,38 @@
-/* No files to import found in abstractions/**\/* */
-/* line 1, ../sass/base/_elements.scss */
+/* line 1, ../sass/_base/_elements.scss */
+body {
+  font-family: 'Open Sans' sans-serif;
+  margin: 0;
+  padding: 0; }
+
+/* line 7, ../sass/_base/_elements.scss */
 a {
   color: #1b1b1b;
   text-decoration: none; }
-  /* line 5, ../sass/base/_elements.scss */
+  /* line 11, ../sass/_base/_elements.scss */
   a:hover {
     color: #999999; }
 
-/* line 10, ../sass/base/_elements.scss */
+/* line 16, ../sass/_base/_elements.scss */
+p {
+  line-height: 2; }
+
+/* line 20, ../sass/_base/_elements.scss */
 h1 {
   font-family: 'Josefin Sans' sans-serif;
   font-size: 3em;
   font-weight: 700; }
 
-/* line 17, ../sass/base/_elements.scss */
+/* line 27, ../sass/_base/_elements.scss */
 h2 {
   font-family: 'Josefin Sans' sans-serif;
   font-size: 3em;
   font-weight: 700; }
 
-/* line 1, ../sass/base/_layout.scss */
+/* line 34, ../sass/_base/_elements.scss */
+img, media {
+  max-width: 100%; }
+
+/* line 1, ../sass/_layout/_layout.scss */
 .page {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
@@ -34,7 +47,7 @@ h2 {
     clear: both; }
 
 @media (min-width: 768px) {
-  /* line 6, ../sass/base/_layout.scss */
+  /* line 6, ../sass/_layout/_layout.scss */
   .content {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -43,7 +56,7 @@ h2 {
     float: left;
     margin-right: 1.20482%; }
 
-  /* line 11, ../sass/base/_layout.scss */
+  /* line 11, ../sass/_layout/_layout.scss */
   .side {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -51,34 +64,64 @@ h2 {
     width: 32.53012%;
     float: right;
     margin-right: 0; } }
-/* line 1, ../sass/base/_media.scss */
-img, media {
-  max-width: 100%; }
-
-/* line 1, ../sass/components/_header.scss */
+/* line 1, ../sass/_modules/_header.scss */
 .header {
-  border-bottom: 2px solid #999999;
+  border-bottom: 1px solid #999999;
   margin-bottom: 40px;
+  overflow: hidden;
   padding: 20px; }
+  /* line 7, ../sass/_modules/_header.scss */
+  .header .title {
+    float: left; }
 
-/* line 2, ../sass/components/_me.scss */
+/* line 2, ../sass/_modules/_me.scss */
 .block--block-1 img {
   border-radius: 50%; }
 
-/* line 1, ../sass/components/_page.scss */
+/* line 1, ../sass/_modules/_navigation.scss */
+.menu {
+  display: flex;
+  float: right;
+  margin: 0; }
+  /* line 6, ../sass/_modules/_navigation.scss */
+  .menu a {
+    padding: 10px; }
+  /* line 10, ../sass/_modules/_navigation.scss */
+  .menu .leaf {
+    list-style-image: none;
+    list-style-type: none; }
+
+/* line 1, ../sass/_modules/_page.scss */
 .content {
   padding: 0 40px; }
 
-/* line 5, ../sass/components/_page.scss */
+/* line 5, ../sass/_modules/_page.scss */
 .side {
   padding: 0 30px; }
 
-/* line 9, ../sass/components/_page.scss */
+/* line 9, ../sass/_modules/_page.scss */
 .submitted-by {
   display: block;
   font-family: 'Open Sans', sans-serif;
   font-style: italic;
   font-size: .8em;
   margin: 30px; }
+
+/* line 17, ../sass/_modules/_page.scss */
+a.background {
+  border: 1px solid #1b1b1b;
+  color: #1b1b1b;
+  display: block;
+  background: #ffffff;
+  padding: 10px 20px;
+  text-transform: uppercase; }
+  /* line 25, ../sass/_modules/_page.scss */
+  a.background:hover {
+    color: #ffffff;
+    background: #1b1b1b; }
+
+/* line 30, ../sass/_modules/_page.scss */
+p {
+  padding: 0 20px; }
 
 /*# sourceMappingURL=sniper.styles.css.map */

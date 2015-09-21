@@ -8,9 +8,7 @@ core = 7.x
 ; ========================================
 ; Stylesheets
 ; ========================================
-stylesheets[all][] = css/sniper.normalize.css
 stylesheets[all][] = css/sniper.hacks.css
-stylesheets[all][] = css/sniper.styles.css
 stylesheets[all][] = css/sniper.no-query.css
 
 ; ========================================
@@ -21,12 +19,7 @@ scripts[] = js/sniper.behaviors.js
 ; ========================================
 ; Regions
 ; ========================================
-regions[branding] = Branding
-regions[header] = Header
-regions[navigation] = Navigation
-regions[highlighted] = Highlighted
-regions[help] = Help
+regions[menu] = Menu
 regions[content] = Content
 regions[side] = Side
-regions[sidebar_second] = Second Sidebar
 regions[footer] = Footer

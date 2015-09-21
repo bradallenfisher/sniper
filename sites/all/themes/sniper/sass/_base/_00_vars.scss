@@ -1,6 +1,10 @@
 //colors;
-$dark-gray: #999999;
-$darker-gray: #1b1b1b;
+$black: #000000;
+$white: #ffffff;
+$link: #1b1b1b !default;
+$link-hover: #999999 !default;
+$link-border-color: #1b1b1b !default;
+$header-border-color: #999999 !default;
 
 // Legacy support.
 $legacy-support-for-ie6: false;

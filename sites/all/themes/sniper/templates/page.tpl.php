@@ -1,26 +1,20 @@
 <div class="header">
-  BRAGGS APPLE CIDER VINEGAR BENEFITS
+  <a class="title" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="site-name">
+    BRAGGS APPLE CIDER VINEGAR BENEFITS
+  </a>
+
+  <div class="menu">
+    <?php print render($page['menu']); ?>
+  </div>
 </div>
 
 <div class="page">
   <?php print $messages; ?>
   <?php print render($tabs); ?>
 
-  <div class="main">
-
     <div class="content" role="main">
 
-
-
-      <div class="menu">
-        <?php print render($page['menu']);?>
-      </div>
-
       <a id="main-content"></a>
-
-      <?php if(!$is_front):?>
-        <h1><?php print $title; ?></h1>
-      <?php endif;?>
 
       <?php print render($page['content']); ?>
 
@@ -30,10 +24,9 @@
       <?php print render($page['side']);?>
     </div>
 
-  </div>
-
   <footer class="footer" role="contentinfo">
     <?php print render($page['footer']); ?>
   </footer>
+
 </div>
 

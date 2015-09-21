@@ -1,5 +1,10 @@
 .header {
-  border-bottom: 2px solid $dark-gray;
+  border-bottom: 1px solid $header-border-color;
   margin-bottom: 40px;
+  overflow: hidden;
   padding: 20px;
+
+  .title {
+    float: left;
+  }
 }

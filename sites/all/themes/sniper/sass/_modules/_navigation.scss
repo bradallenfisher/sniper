@@ -1,0 +1,14 @@
+.menu {
+  display: flex;
+  float: right;
+  margin: 0;
+
+  a {
+    padding: 10px;
+  }
+
+  .leaf {
+    list-style-image: none;
+    list-style-type: none;
+  }
+}

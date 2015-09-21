@@ -1,10 +1,20 @@
+body {
+  font-family: 'Open Sans' sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 a {
-  color: $darker-gray;
+  color: $link;
   text-decoration: none;
 
   &:hover {
-    color: $dark-gray;
+    color: $link-hover;
   }
+}
+
+p {
+  line-height: 2;
 }
 
 h1 {
