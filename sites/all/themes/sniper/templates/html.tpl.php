@@ -54,8 +54,7 @@
   <html class="no-js" lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
 <?php endif; ?>
 <head>
-  <link href='https://fonts.googleapis.com/css?family=Josefin+Sans:700' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
