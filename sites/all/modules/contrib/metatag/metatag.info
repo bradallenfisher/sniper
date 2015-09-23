@@ -18,11 +18,17 @@ configure = admin/config/search/metatags
 
 files[] = metatag.inc
 files[] = metatag.migrate.inc
-files[] = metatag.test
 
-; Information added by Drupal.org packaging script on 2015-07-24
-version = "7.x-1.7"
+; Tests.
+files[] = tests/metatag.helper.test
+files[] = tests/metatag.unit.test
+files[] = tests/metatag.node.test
+files[] = tests/metatag.term.test
+files[] = tests/metatag.user.test
+
+; Information added by Drupal.org packaging script on 2015-09-23
+version = "7.x-1.7+32-dev"
 core = "7.x"
 project = "metatag"
-datestamp = "1437763741"
+datestamp = "1442967264"
 

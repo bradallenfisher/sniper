@@ -219,9 +219,10 @@ class DrupalTextMetaTag extends DrupalDefaultMetaTag {
       'raw' => FALSE,
     );
 
-    $name = "metatag:" . $options["instance"] . ":" . $this->info["name"];
+    // Translate the meta tag value prior to the tokens being replace, this
+    // allows for different tokens to be inserted for each locale/language.
+    $value = metatag_translate($this->data['value'], $this->info['name']);
 
-    $value = metatag_translate($name, $this->data['value']);
     if (empty($options['raw'])) {
       // Give other modules the opportunity to use hook_metatag_pattern_alter()
       // to modify defined token patterns and values before replacement.
@@ -250,7 +251,15 @@ class DrupalTextMetaTag extends DrupalDefaultMetaTag {
       }
     }
 
-    return $this->tidyValue($value);
+    $value = $this->tidyValue($value);
+
+    // Optionally translate the strings after they've been processed for tokens
+    // and images.
+    if (variable_get('metatag_translate_final_values', FALSE)) {
+      $value = metatag_translate($value, $this->info['name']);
+    }
+
+    return $value;
   }
 }
 

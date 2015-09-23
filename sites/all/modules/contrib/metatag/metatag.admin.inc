@@ -5,29 +5,6 @@
  * Administration page callbacks for the metatag module.
  */
 
-function _metatag_config_sort($a, $b) {
-  $return = NULL;
-  $a_contexts = explode(':', $a->instance);
-  $b_contexts = explode(':', $b->instance);
-  for ($i = 0; $i < max(count($a_contexts), count($b_contexts)); $i++) {
-    $a_context = isset($a_contexts[$i]) ? $a_contexts[$i] : '';
-    $b_context = isset($b_contexts[$i]) ? $b_contexts[$i] : '';
-    if ($a_context == $b_context) {
-      continue;
-    }
-    elseif ($a_context == 'global') {
-      $return = -1;
-    }
-    elseif ($a_context == '') {
-      $return = -1;
-    }
-    else {
-      $return = strcmp($a_context, $b_context);
-    }
-  }
-  return $return;
-}
-
 function _metatag_config_overview_indent($text, $instance) {
   $parents = metatag_config_get_parent_instances($instance);
   array_shift($parents);
@@ -48,8 +25,7 @@ function metatag_config_overview() {
   $metatags = metatag_get_info('tags');
 
   $configs = ctools_export_crud_load_all('metatag_config');
-  ksort($configs);
-  //uasort($configs, '_metatag_config_sort');
+  uksort($configs, '_metatag_config_instance_sort');
 
   $rows = array();
   foreach ($configs as $config) {
@@ -308,10 +284,6 @@ function metatag_config_edit_form($form, &$form_state, $config) {
 
   metatag_metatags_form($form, $config->instance, $config->config, $options);
   $form['metatags']['#type'] = 'container';
-
-  // Make the token browser available.
-  $form['metatags']['#prefix'] = $form['metatags']['#description'];
-  unset($form['metatags']['#description']);
 
   $form['actions']['#type'] = 'actions';
   $form['actions']['save'] = array(
@@ -604,6 +576,20 @@ function metatag_admin_settings_form() {
     }
   }
 
+  $form['additional'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Additional settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['additional']['metatag_pager_string'] = array(
+    '#title' => t('Custom pager string'),
+    '#type' => 'textfield',
+    '#description' => t('When the current page includes a pager, e.g. the URL contains "?page=42", the [current-page:pager] token may be added to a meta tag to differentiate between two pages that would otherwise have the same meta tags. The value "PAGER" (must be in uppercase) will be replaced by the actual page count. Note: the pager will only output if the page number is 2 or above and the string "page=NUMBER" is in the URL.<br />For best use, it may be worthwhile to add the [current-page:pager] to the page title to the left of the site name, to the start of description tags, etc.'),
+    '#default_value' => variable_get('metatag_pager_string', 'Page PAGER | '),
+  );
+
   $form['advanced'] = array(
     '#type' => 'fieldset',
     '#title' => t('Advanced settings'),
@@ -652,6 +638,15 @@ function metatag_admin_settings_form() {
     '#description' => t('Disabling this will cause all meta tag output to be generated uniquely for each page load. Currently only affects entities. Note: the entity configuration and output for other types of pages will still be cached, but this can stop the {cache_metatag} table from growing out of control in some scenarios.'),
     '#default_value' => variable_get('metatag_cache_output', TRUE),
   );
+
+  if (module_exists('i18n_string')) {
+    $form['advanced']['metatag_translate_final_values'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Translate final meta tag output'),
+      '#description' => t('By default the string meta tags are made available for translation before tokens are processed, the idea being that the tokens will probably have already been translated because they come from content that is translated elsewhere. This allows for an optional second-stage translation for sites that want to translate the final output too.'),
+      '#default_value' => variable_get('metatag_translate_final_values', FALSE),
+    );
+  }
 
   $form['advanced']['metatag_page_region'] = array(
     '#type' => 'select',

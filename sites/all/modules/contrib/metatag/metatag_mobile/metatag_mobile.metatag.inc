@@ -15,6 +15,20 @@ function metatag_mobile_metatag_info() {
       '#weight' => 80,
     ),
   );
+  $info['groups']['apple_mobile'] = array(
+    'label' => t('Apple & iOS'),
+    'description' => t("Custom meta tags used by Apple's software, iOS, Safari, etc."),
+    'form' => array(
+      '#weight' => 81,
+    ),
+  );
+  $info['groups']['android_mobile'] = array(
+    'label' => t('Android Mobile'),
+    'description' => t("Custom meta tags used by the Android OS, browser, etc."),
+    'form' => array(
+      '#weight' => 82,
+    ),
+  );
 
   $weight = 80;
 
@@ -58,6 +72,60 @@ function metatag_mobile_metatag_info() {
     'element' => array(
       '#theme' => 'metatag_http_equiv',
     ),
+  ) + $tag_info_defaults;
+
+  // Default values for each meta tag.
+  $tag_info_defaults = array(
+    'description' => '',
+    'class' => 'DrupalTextMetaTag',
+    'group' => 'apple_mobile',
+  );
+
+  $info['tags']['apple-mobile-web-app-capable'] = array(
+    'label' => t('Web app capable?'),
+    'description' => t('If set to "yes", the application will runn in full-screen mode; the default behavior is to use Safari to display web content.'),
+    'weight' => ++$weight,
+  ) + $tag_info_defaults;
+
+  $info['tags']['apple-mobile-web-app-status-bar-style'] = array(
+    'label' => t('Status bar color'),
+    'description' => t('Requires the "Web app capable" meta tag to be set to "yes". May be set to "default", "black", or "black-translucent".'),
+    'weight' => ++$weight,
+  ) + $tag_info_defaults;
+
+  $info['tags']['format-detection'] = array(
+    'label' => t('Format detection'),
+    'description' => t('If set to "telephone=no" the page will not be checked for phone numbers, which would be presented .'),
+    'weight' => ++$weight,
+  ) + $tag_info_defaults;
+
+  $info['tags']['ios-app-link-alternative'] = array(
+    'label' => t('iOS app link alternative'),
+    'description' => t('A custom string for deeplinking to an iOS mobile app. Should be in the format "itunes_id/scheme/host_path", e.g. 123456/example/hello-screen". The "ios-app://" prefix will be included automatically.'),
+    'class' => 'DrupalLinkMetaTag',
+    'weight' => ++$weight,
+    'element' => array(
+      '#theme' => 'metatag_mobile_ios_app',
+    ),
+    'header' => FALSE,
+  ) + $tag_info_defaults;
+
+  // Default values for each meta tag.
+  $tag_info_defaults = array(
+    'description' => '',
+    'class' => 'DrupalTextMetaTag',
+    'group' => 'android_mobile',
+  );
+
+  $info['tags']['android-app-link-alternative'] = array(
+    'label' => t('Android app link alternative'),
+    'description' => t('A custom string for deeplinking to an Android mobile app. Should be in the format "package_name/host_path", e.g. "com.example.android/example/hello-screen". The "android-app://" prefix will be included automatically.'),
+    'class' => 'DrupalLinkMetaTag',
+    'weight' => ++$weight,
+    'element' => array(
+      '#theme' => 'metatag_mobile_android_app',
+    ),
+    'header' => FALSE,
   ) + $tag_info_defaults;
 
   return $info;
