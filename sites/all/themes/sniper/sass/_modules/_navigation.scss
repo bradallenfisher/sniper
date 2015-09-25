@@ -1,14 +1,34 @@
-.menu {
-  display: flex;
-  float: right;
-  margin: 0;
-
-  a {
-    padding: 10px;
+.navigation {
+  display: none;
+  @include breakpoint($narrow, true) {
+    display: block;
   }
+}
+
+.navigation.open {
+  display: block;
+  clear: both;
+  @include breakpoint($narrow, true) {
+    clear:none;
+  }
+}
+
+.menu {
+  margin: 0;
 
   .leaf {
     list-style-image: none;
     list-style-type: none;
+  }
+
+  a {
+    display: block;
+    padding: 10px;
+
+  }
+
+  @include breakpoint($narrow, true) {
+    display: flex !important;
+    float: right;
   }
 }

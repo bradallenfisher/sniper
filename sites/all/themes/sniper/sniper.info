@@ -15,6 +15,7 @@ stylesheets[all][] = css/sniper.no-query.css
 ; Scripts
 ; ========================================
 scripts[] = js/sniper.behaviors.js
+scripts[] = js/menu.js
 
 ; ========================================
 ; Regions

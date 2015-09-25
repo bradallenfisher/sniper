@@ -1,13 +1,16 @@
 <div class="header">
-  <a class="title" href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" class="site-name">
+  <div class="title">
+  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
     BRAGGS APPLE CIDER VINEGAR BENEFITS
   </a>
-
-  <div class="menu">
-    <?php print render($page['menu']); ?>
-  </div>
 </div>
 
+<div class="menu-expander"><i class="fa fa-bars"></i></div>
+
+<div class="navigation">
+  <?php print render($page['menu']); ?>
+</div>
+</div>
 <div class="page">
   <?php print $messages; ?>
   <?php print render($tabs); ?>

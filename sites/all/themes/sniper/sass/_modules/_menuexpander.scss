@@ -1,0 +1,14 @@
+.menu-expander {
+  background: $menu-expander-bg;
+  color: $white;
+  cursor: pointer;
+  display: block;
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+
+  @include breakpoint($narrow, true) {
+    display: none;
+  }
+}
