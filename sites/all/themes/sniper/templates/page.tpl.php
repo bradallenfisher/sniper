@@ -1,7 +1,7 @@
 <div class="header">
   <div class="title">
   <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home">
-    BRAGGS APPLE CIDER VINEGAR BENEFITS
+APPLE CIDER VINEGAR MIRACLE
   </a>
 </div>
 
@@ -18,7 +18,7 @@
     <div class="content" role="main">
 
       <a id="main-content"></a>
-
+      <h1><?php print $title;?></h1>
       <?php print render($page['content']); ?>
 
     </div>
