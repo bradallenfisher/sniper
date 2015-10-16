@@ -3,15 +3,30 @@
 module.exports = function (grunt) {
 
   grunt.initConfig({
+    concat: {
+      options: {
+        separator: ';'
+      },
+      all: {
+        src: [
+          'src/js/vendor/modernizr.js',
+          'src/js/vendor/flexslider.js',
+          'src/js/app/**/*.js',
+          'src/js/app/*.js'
+        ],
+        dest: 'js/scripts.js'
+      }
+    },
     watch: {
       options: {
         livereload: true
       },
       sass: {
-        files: ['sass/{,**/}*.{scss,sass}'],
-        tasks: ['compass:dev'],
+        files: ['src/sass/{,**/}*.{scss,sass}'],
+        tasks: ['compass:dev','autoprefixer'],
         options: {
-          livereload: false
+          livereload: false,
+          cascade: false
         }
       },
       registry: {
@@ -28,8 +43,8 @@ module.exports = function (grunt) {
         files: ['css/{,**/}*.css']
       },
       js: {
-        files: ['js/{,**/}*.js', '!js/{,**/}*.min.js'],
-        tasks: ['jshint', 'uglify:dev']
+        files: ['src/js/{,**/}*.js', '!src/js/{,**/}*.min.js'],
+        tasks: ['concat', 'jshint', 'uglify']
       }
     },
 
@@ -57,66 +72,47 @@ module.exports = function (grunt) {
       }
     },
 
+    autoprefixer: {
+      all: {
+        src: ['css/{,**/}*.css']
+      }
+    },
+
     jshint: {
+      all: ['src/js/app/**/*.js'],
       options: {
         jshintrc: '.jshintrc'
-      },
-      all: ['js/{,**/}*.js', '!js/{,**/}*.min.js']
+      }
     },
 
     uglify: {
-      dev: {
-        options: {
-          mangle: false,
-          compress: false,
-          beautify: true
-        },
-        files: [{
-          expand: true,
-          flatten: true,
-          cwd: 'js',
-          dest: 'js',
-          src: ['**/*.js', '!**/*.min.js'],
-          rename: function(dest, src) {
-            var folder = src.substring(0, src.lastIndexOf('/'));
-            var filename = src.substring(src.lastIndexOf('/'), src.length);
-            filename = filename.substring(0, filename.lastIndexOf('.'));
-            return dest + '/' + folder + filename + '.min.js';
-          }
-        }]
+      options: {
+        mangle: false,
+        compress: false,
+        beautify: true
       },
-      dist: {
-        options: {
-          mangle: true,
-          compress: true
-        },
-        files: [{
-          expand: true,
-          flatten: true,
-          cwd: 'js',
-          dest: 'js',
-          src: ['**/*.js', '!**/*.min.js'],
-          rename: function(dest, src) {
-            var folder = src.substring(0, src.lastIndexOf('/'));
-            var filename = src.substring(src.lastIndexOf('/'), src.length);
-            filename = filename.substring(0, filename.lastIndexOf('.'));
-            return dest + '/' + folder + filename + '.min.js';
-          }
-        }]
-      }
+      all: {
+        files: {
+          'js/scripts.min.js': ['<%= concat.all.dest %>']
+        }
+      },
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-autoprefixer');
+  grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('build', [
-    'uglify:dist',
+    'concat',
+    'uglify',
     'compass:dist',
-    'jshint'
+    'jshint',
+    'autoprefixer'
   ]);
 
 };

@@ -36,8 +36,6 @@ img, media {
 }
 
 .page {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   max-width: 1200px;
   margin-left: auto;
@@ -51,8 +49,6 @@ img, media {
 
 @media (min-width: 768px) {
   .content {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 66.26506%;
     float: left;
@@ -60,8 +56,6 @@ img, media {
   }
 
   .side {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 32.53012%;
     float: right;
@@ -69,8 +63,6 @@ img, media {
   }
 }
 .title {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 83.13253%;
   float: left;
@@ -78,8 +70,6 @@ img, media {
 }
 @media (min-width: 800px) {
   .title {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     width: 40.96386%;
     float: left;
@@ -88,8 +78,6 @@ img, media {
 }
 
 .menu-expander {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   width: 15.66265%;
   float: right;
@@ -172,6 +160,9 @@ ul.menu {
 }
 @media (min-width: 800px) {
   .menu {
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -ms-flexbox !important;
     display: flex !important;
     float: right;
   }
